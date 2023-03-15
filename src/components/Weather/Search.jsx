@@ -2,7 +2,7 @@ import React from 'react'
 
 const Search = () => {
     return (
-        <div>
+        <div className="search-container">
             <form>
                 <input type="text" name="search" placeholder="ingresa una zona" />
                 <input type="submit" value="Buscar" />

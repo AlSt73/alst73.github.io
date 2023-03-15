@@ -23,3 +23,128 @@ body {
     height: 100%;
 }
 
+.card-weather h1{
+    padding:13px;
+    margin: 7px 0;
+    border-radius: 3px;
+    background-color: #ffc183;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 33px;
+}
+
+.search-container input {
+    padding: 11px;
+    border-radius: 3px;
+    margin: 13px;
+    box-shadow: 1px 3px 3px #808080;
+}
+
+.search-container input:nth-child(2) {
+    background-color: #fbc370;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.weather-info {
+    background-color: #a1c3db;
+    padding: 13px;
+    border-radius: 3px;
+}
+
+.box-temperature {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px 13px;
+}
+
+.box-temperature img {
+    width: 83px;
+}
+
+.box-temperature .temperature {
+    font-size: 53px;
+    position: relative;
+    bottom: 17px;
+}
+
+.box-temperature section:nth-child(2) {
+    margin-left: 13px;
+}
+
+.box-temperature p {
+    margin-bottom: 3px;
+    padding:5px;
+}
+
+.box-temperature span {
+    font-size: 17px;
+    padding: 13px;
+}
+
+.weather-info .description {
+    display: flex;
+    padding-left: 17px;
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.table-weather {
+    background-color: #a1c3db;
+    padding: 13px;
+    font-size: 17px;
+    border-radius: 3px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-weather thead {
+    border-bottom: 1px solid #869fb1;
+}
+
+.table-weather thead th {
+    padding: 13px;
+    border-right: 1px solid #869fb1;
+}
+
+.table-weather thead th div{
+    margin-top: 5px;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.table-weather div span{
+    padding-left: 5px;
+}
+
+.table-weather thead th:last-child {
+    padding: 13px;
+    border-right: none;
+}
+
+.table-weather tbody td {
+    border: none;
+    padding: 17px;
+    border-right: 1px solid #869fb1;
+    border-bottom: 1px solid #869fb1;
+}
+
+.table-weather {
+    margin-top: 33px;
+}
+
+.data-weather{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+}
+
+.table-weather tbody .ico{
+    width: 33px;
+    margin-bottom: 13px;
+}
