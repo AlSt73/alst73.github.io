@@ -38,11 +38,6 @@ const Weather = () => {
                         <section className="weather-info">
                             <div className="box-temperature">
                                 <section>
-                                    {/* {data.list[0].weather[0].description == "muy nuboso"
-                                        ? <img src={img} alt="image" />
-                                        : <img src="sd" alt="image" />
-
-                                    } */}
                                     {
                                         data.list[0].weather[0].main == "Clouds" && <img src="src/assets/images/cloud.png" alt="image" />
                                     }
@@ -204,8 +199,6 @@ const Weather = () => {
                                                 }
                                                 <span>{Math.ceil(i.main.temp)}°</span>
                                             </td>
-
-
                                 })}
                             </tr>
                         </tbody>
