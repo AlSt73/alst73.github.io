@@ -8,6 +8,9 @@
 
 :root {
     --var-color-text: #322d2d;
+    --var-color-border: #bfd1de;
+    --var-color-bg: #a1c3dbd4;
+    --var-color-bg2: #ffc183e3;
 }
 
 * {
@@ -16,18 +19,45 @@
     font-family: 'Ubuntu';
 }
 
+
 body {
+    background-image: url("../images/bkg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     background-color: #dddddd;
     margin: 33px auto;
     width: 90%;
     height: 100%;
 }
 
-.card-weather h1{
-    padding:13px;
+.magic {
+    display: none;
+}
+
+.showMagic {
+    display: block;
+
+}
+
+.container h3 {
+    background-color: var(--var-color-bg);
+    width: 100px;
+    border-radius: 3px;
+    padding: 7px;
+}
+
+.container .empty-message {
+    margin-top: 13px;
+    background-color: var(--var-color-bg);
+    padding: 13px;
+    text-align: center;
+}
+
+.card-weather h1 {
+    padding: 13px;
     margin: 7px 0;
     border-radius: 3px;
-    background-color: #ffc183;
+    background-color: var(--var-color-bg2);
 }
 
 .search-container {
@@ -36,21 +66,45 @@ body {
     margin-bottom: 33px;
 }
 
+.search-container label {
+    font-size: 27px;
+    position: relative;
+    top: 4px;
+    left: 39px;
+    color: #585555;
+}
+
 .search-container input {
+    text-transform: uppercase;
     padding: 11px;
+    text-align: center;
     border-radius: 3px;
     margin: 13px;
     box-shadow: 1px 3px 3px #808080;
 }
 
-.search-container input:nth-child(2) {
+/* .search-container input:nth-child(2) {
     background-color: #fbc370;
     font-weight: bold;
     cursor: pointer;
+} */
+
+.search-container button {
+    background-color: #fbc370;
+    padding: 13px;
+    border-radius: 11px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.search-container button:hover {
+    background-color: #fbc370d9;
+    transform: scale(1.2, 1.25);
 }
 
 .weather-info {
-    background-color: #a1c3db;
+    background-color: var(--var-color-bg);
     padding: 13px;
     border-radius: 3px;
 }
@@ -78,7 +132,7 @@ body {
 
 .box-temperature p {
     margin-bottom: 3px;
-    padding:5px;
+    padding: 5px;
 }
 
 .box-temperature span {
@@ -94,7 +148,7 @@ body {
 }
 
 .table-weather {
-    background-color: #a1c3db;
+    background-color: var(--var-color-bg);
     padding: 13px;
     font-size: 17px;
     border-radius: 3px;
@@ -102,7 +156,7 @@ body {
     border-collapse: collapse;
 }
 
-.table-weather thead {
+/* .table-weather thead {
     border-bottom: 1px solid #869fb1;
 }
 
@@ -116,8 +170,8 @@ body {
     font-size: 1em;
     font-weight: 500;
 }
-
-.table-weather div span{
+ */
+.table-weather div span {
     padding-left: 5px;
 }
 
@@ -126,25 +180,59 @@ body {
     border-right: none;
 }
 
-.table-weather tbody td {
-    border: none;
-    padding: 17px;
-    border-right: 1px solid #869fb1;
-    border-bottom: 1px solid #869fb1;
+.table-weather .col-h {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.data-weather-header .date-time {
+    margin-top: 13px;
+}
+
+.data-weather-header .max-temperature {
+    margin-bottom: 5px;
+}
+
+.table-weather .data-weather-header {
+    padding: 13px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+}
+
+.table-weather tbody td,
+.data-weather-header {
+    border-right: 1px solid var(--var-color-border);
+    border-bottom: 1px solid var(--var-color-border);
+}
+
+.table-weather tbody td:last-child,
+.data-weather-header:last-child {
+    border-right: 0px solid var(--var-color-border);
+    border-bottom: 1px solid var(--var-color-border);
 }
 
 .table-weather {
     margin-top: 33px;
 }
 
-.data-weather{
-    display:flex;
+.col {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+}
+
+.data-weather {
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-flow: column nowrap;
+    padding: 23px;
+    width: 100%;
 }
 
-.table-weather tbody .ico{
+.table-weather tbody .ico {
     width: 33px;
     margin-bottom: 13px;
 }

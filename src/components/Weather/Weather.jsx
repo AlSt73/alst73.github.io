@@ -6,77 +6,83 @@ import { AuthContext } from '../../hooks/useContext';
 
 const Weather = () => {
 
-    const {api,x,setInputCity,inputCity} = useContext(AuthContext);
+    const { setInputCity, inputCity, options, api } = useContext(AuthContext);
 
-    
-    //console.log(x);
+    const { weather: data, fetchData } = useGetWeather(api, options);
+    //console.log(data);
     const getWeather = (e) => {
         const date = new Date(e);
         let day = date.getDay();
         return day;
     }
-
     useEffect(() => {
-        //getWeather();
-        x
+        fetchData();
+        //console.log(api);
+
     }, [inputCity]);
+
 
     return (
         <div className="container">
-            <Search setInputCity={setInputCity} inputCity={inputCity}/>
-            <h3>Clima en...</h3>
-            {x.cod == "200" ?
-                <>
+            <Search />
+            {data.cod !== "200" ?
+                <div className="magic">
+                    <h1 className="empty-message">No hay información para esta ciudad</h1>
+                </div>
+
+                :
+                <div className="magic">
+                    <h3>Clima en...</h3>
                     <article className="card-weather">
-                        <h1>{x.city.name}, {x.city.country}</h1>
+                        <h1>{data.city.name}, {data.city.country}</h1>
                         <section className="weather-info">
                             <div className="box-temperature">
                                 <section>
-                                    {/* {x.list[0].weather[0].description == "muy nuboso"
+                                    {/* {data.list[0].weather[0].description == "muy nuboso"
                                         ? <img src={img} alt="image" />
                                         : <img src="sd" alt="image" />
 
                                     } */}
                                     {
-                                        x.list[0].weather[0].main == "Clouds" && <img src="src/assets/images/cloud.png" alt="image" />
+                                        data.list[0].weather[0].main == "Clouds" && <img src="src/assets/images/cloud.png" alt="image" />
                                     }
                                     {
-                                        x.list[0].weather[0].main == "Rain" && <img src="src/assets/images/rain.png" alt="image" />
+                                        data.list[0].weather[0].main == "Rain" && <img src="src/assets/images/rain.png" alt="image" />
                                     }
                                     {
-                                        x.list[0].weather[0].main == "Clear" && <img src="src/assets/images/sunny.png" alt="image" />
+                                        data.list[0].weather[0].main == "Clear" && <img src="src/assets/images/sunny.png" alt="image" />
                                     }
                                     {
-                                        x.list[0].weather[0].main == "Snow" && <img src="src/assets/images/snow.png" alt="image" />
+                                        data.list[0].weather[0].main == "Snow" && <img src="src/assets/images/snow.png" alt="image" />
                                     }
                                     {
-                                        x.list[0].weather[0].main == "Haze" && <img src="src/assets/images/haze.png" alt="image" />
+                                        data.list[0].weather[0].main == "Haze" && <img src="src/assets/images/haze.png" alt="image" />
                                     }
 
-                                    <span className="temperature">{Math.ceil(x.list[0].main.temp)}°</span>
+                                    <span className="temperature">{Math.ceil(data.list[0].main.temp)}°</span>
                                 </section>
                                 <section>
                                     <p>
                                         <i className="fa-solid fa-wind"></i>
-                                        <span>{x.list[0].wind.speed} km/h</span>
+                                        <span>{data.list[0].wind.speed} km/h</span>
                                     </p>
                                     <p>
                                         <i className="fa-solid fa-droplet"></i>
-                                        <span>{x.list[0].main.humidity}%</span>
+                                        <span>{data.list[0].main.humidity}%</span>
                                     </p>
                                 </section>
                             </div>
                             <div className="description">
-                                <span>{x.list[0].weather[0].description.toUpperCase()}</span>
+                                <span>{data.list[0].weather[0].description.toUpperCase()}</span>
                             </div>
                         </section>
 
                     </article>
                     <table className="table-weather">
                         <thead>
-                            <tr>
-                                <th>Hora</th>
-                                {x.list.map((i) => {
+                            <tr className="col-h">
+                                <th className="data-weather-header">Hora</th>
+                                {data.list.map((i) => {
                                     let day = getWeather(i.dt_txt)
                                     let dayOfWeek = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
                                     let dayName;
@@ -88,14 +94,14 @@ const Weather = () => {
                                     })
                                     let result = [];
                                     //recorto la prop dt_txt para tener solo la hora
-                                    x.list.filter((i, j) => {
+                                    data.list.filter((i, j) => {
                                         if (getWeather(i.dt_txt) == day) {
                                             result.push(i.main.temp_max)
                                         }
                                     })
                                     let z = i.dt_txt.split(" ");
                                     if (getWeather(z[0]) != day && z[1] == "15:00:00") {
-                                        return <th key={i.dt}>
+                                        return <th className="data-weather-header" key={i.dt}>
                                             <span>{dayName}</span>
                                             <div className="date-time">
                                                 <div className="max-temperature">
@@ -113,15 +119,16 @@ const Weather = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <td >09:00 am</td>
-                            {x.list.map((i) => {
-                                let z = i.dt_txt.split(" ");
-                                if (z[1] == "09:00:00")
-                                    if (z[0])
+                            <tr className="col">
 
-                                        return <th key={i.dt}>
 
-                                            <td className="data-weather">
+                                <td className="data-weather">09:00 am</td>
+                                {data.list.map((i) => {
+                                    let z = i.dt_txt.split(" ");
+                                    if (z[1] == "09:00:00")
+                                        if (z[0])
+
+                                            return <td className="data-weather" key={i.dt}>
                                                 {
                                                     i.weather[0].main == "Clouds" && <img className="ico" src="src/assets/images/cloud.png" alt="image" />
                                                 }
@@ -139,76 +146,72 @@ const Weather = () => {
                                                 }
                                                 <span>{Math.ceil(i.main.temp)}°</span>
                                             </td>
-                                        </th>
 
-                            })}
-                            <tr>
-                                <td >15:00 pm</td>
-                                {x.list.map(i => {
+
+                                })}
+                            </tr>
+                            <tr className="col">
+                                <td className="data-weather" >15:00 pm</td>
+                                {data.list.map(i => {
                                     let z = i.dt_txt.split(" ");
                                     if (z[1] == "15:00:00")
                                         if (z[0])
 
-                                            return <th key={i.dt}>
+                                            return <td className="data-weather" key={i.dt}>
+                                                {
+                                                    i.weather[0].main == "Clouds" && <img className="ico" src="src/assets/images/cloud.png" alt="image" />
+                                                }
+                                                {
+                                                    i.weather[0].main == "Rain" && <img className="ico" src="src/assets/images/rain.png" alt="image" />
+                                                }
+                                                {
+                                                    i.weather[0].main == "Clear" && <img className="ico" src="src/assets/images/sunny.png" alt="image" />
+                                                }
+                                                {
+                                                    i.weather[0].main == "Snow" && <img className="ico" src="src/assets/images/snow.png" alt="image" />
+                                                }
+                                                {
+                                                    i.weather[0].main == "Haze" && <img className="ico" src="src/assets/images/haze.png" alt="image" />
+                                                }
+                                                <span>{Math.ceil(i.main.temp)}°</span>
+                                            </td>
 
-                                                <td className="data-weather">
-                                                    {
-                                                        i.weather[0].main == "Clouds" && <img className="ico" src="src/assets/images/cloud.png" alt="image" />
-                                                    }
-                                                    {
-                                                        i.weather[0].main == "Rain" && <img className="ico" src="src/assets/images/rain.png" alt="image" />
-                                                    }
-                                                    {
-                                                        i.weather[0].main == "Clear" && <img className="ico" src="src/assets/images/sunny.png" alt="image" />
-                                                    }
-                                                    {
-                                                        i.weather[0].main == "Snow" && <img className="ico" src="src/assets/images/snow.png" alt="image" />
-                                                    }
-                                                    {
-                                                        i.weather[0].main == "Haze" && <img className="ico" src="src/assets/images/haze.png" alt="image" />
-                                                    }
-                                                    <span>{Math.ceil(i.main.temp)}°</span>
-                                                </td>
-                                            </th>
 
                                 })}
                             </tr>
-                            <tr>
-                                <td>21:00 pm</td>
-                                {x.list.map(i => {
+                            <tr className="col">
+                                <td className="data-weather">21:00 pm</td>
+                                {data.list.map(i => {
                                     let z = i.dt_txt.split(" ");
                                     if (z[1] == "21:00:00")
                                         if (z[0])
 
-                                            return <th key={i.dt}>
+                                            return <td className="data-weather" key={i.dt}>
+                                                {
+                                                    i.weather[0].main == "Clouds" && <img className="ico" src="src/assets/images/cloud.png" alt="image" />
+                                                }
+                                                {
+                                                    i.weather[0].main == "Rain" && <img className="ico" src="src/assets/images/rain.png" alt="image" />
+                                                }
+                                                {
+                                                    i.weather[0].main == "Clear" && <img className="ico" src="src/assets/images/sunny.png" alt="image" />
+                                                }
+                                                {
+                                                    i.weather[0].main == "Snow" && <img className="ico" src="src/assets/images/snow.png" alt="image" />
+                                                }
+                                                {
+                                                    i.weather[0].main == "Haze" && <img className="ico" src="src/assets/images/haze.png" alt="image" />
+                                                }
+                                                <span>{Math.ceil(i.main.temp)}°</span>
+                                            </td>
 
-                                                <td className="data-weather">
-                                                    {
-                                                        i.weather[0].main == "Clouds" && <img className="ico" src="src/assets/images/cloud.png" alt="image" />
-                                                    }
-                                                    {
-                                                        i.weather[0].main == "Rain" && <img className="ico" src="src/assets/images/rain.png" alt="image" />
-                                                    }
-                                                    {
-                                                        i.weather[0].main == "Clear" && <img className="ico" src="src/assets/images/sunny.png" alt="image" />
-                                                    }
-                                                    {
-                                                        i.weather[0].main == "Snow" && <img className="ico" src="src/assets/images/snow.png" alt="image" />
-                                                    }
-                                                    {
-                                                        i.weather[0].main == "Haze" && <img className="ico" src="src/assets/images/haze.png" alt="image" />
-                                                    }
-                                                    <span>{Math.ceil(i.main.temp)}°</span>
-                                                </td>
-                                            </th>
 
                                 })}
                             </tr>
                         </tbody>
                     </table>
 
-                </>
-                : <h1>No hay nada</h1>
+                </div>
             }
         </div>
     )
