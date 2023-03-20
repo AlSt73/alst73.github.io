@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Search from './Search'
-import img from '../../assets/images/sunny.png';
+import haze from '../../assets/images/haze.png';
+
 import { useGetWeather } from '../../hooks/useGetWeather';
 import { AuthContext } from '../../hooks/useContext';
 
@@ -39,19 +40,19 @@ const Weather = () => {
                             <div className="box-temperature">
                                 <section>
                                     {
-                                        data.list[0].weather[0].main == "Clouds" && <img src="src/assets/images/cloud.png" alt="image" />
+                                        data.list[0].weather[0].main == "Clouds" && <img src={haze} alt="image" />
                                     }
                                     {
-                                        data.list[0].weather[0].main == "Rain" && <img src="src/assets/images/rain.png" alt="image" />
+                                        data.list[0].weather[0].main == "Rain" && <img src={haze} />
                                     }
                                     {
-                                        data.list[0].weather[0].main == "Clear" && <img src="src/assets/images/sunny.png" alt="image" />
+                                        data.list[0].weather[0].main == "Clear" && <img src={haze} alt="image" />
                                     }
                                     {
                                         data.list[0].weather[0].main == "Snow" && <img src="src/assets/images/snow.png" alt="image" />
                                     }
                                     {
-                                        data.list[0].weather[0].main == "Haze" && <img src="src/assets/images/haze.png" alt="image" />
+                                        data.list[0].weather[0].main == "Haze" && <img src={haze} alt="image" />
                                     }
 
                                     <span className="temperature">{Math.ceil(data.list[0].main.temp)}°</span>
@@ -125,19 +126,19 @@ const Weather = () => {
 
                                             return <td className="data-weather" key={i.dt}>
                                                 {
-                                                    i.weather[0].main == "Clouds" && <img className="ico" src="src/assets/images/cloud.png" alt="image" />
+                                                    i.weather[0].main == "Clouds" && <img className="ico" src={haze} alt="image" />
                                                 }
                                                 {
-                                                    i.weather[0].main == "Rain" && <img className="ico" src="src/assets/images/rain.png" alt="image" />
+                                                    i.weather[0].main == "Rain" && <img className="ico" src={haze} alt="image" />
                                                 }
                                                 {
-                                                    i.weather[0].main == "Clear" && <img className="ico" src="src/assets/images/sunny.png" alt="image" />
+                                                    i.weather[0].main == "Clear" && <img className="ico" src={haze} alt="image" />
                                                 }
                                                 {
-                                                    i.weather[0].main == "Snow" && <img className="ico" src="src/assets/images/snow.png" alt="image" />
+                                                    i.weather[0].main == "Snow" && <img className="ico" src={haze} alt="image" />
                                                 }
                                                 {
-                                                    i.weather[0].main == "Haze" && <img className="ico" src="src/assets/images/haze.png" alt="image" />
+                                                    i.weather[0].main == "Haze" && <img className="ico" src={haze} alt="image" />
                                                 }
                                                 <span>{Math.ceil(i.main.temp)}°</span>
                                             </td>
@@ -154,19 +155,19 @@ const Weather = () => {
 
                                             return <td className="data-weather" key={i.dt}>
                                                 {
-                                                    i.weather[0].main == "Clouds" && <img className="ico" src="src/assets/images/cloud.png" alt="image" />
+                                                    i.weather[0].main == "Clouds" && <img className="ico" src={haze} alt="image" />
                                                 }
                                                 {
-                                                    i.weather[0].main == "Rain" && <img className="ico" src="src/assets/images/rain.png" alt="image" />
+                                                    i.weather[0].main == "Rain" && <img className="ico" src={haze} alt="image" />
                                                 }
                                                 {
-                                                    i.weather[0].main == "Clear" && <img className="ico" src="src/assets/images/sunny.png" alt="image" />
+                                                    i.weather[0].main == "Clear" && <img className="ico" src={haze} alt="image" />
                                                 }
                                                 {
-                                                    i.weather[0].main == "Snow" && <img className="ico" src="src/assets/images/snow.png" alt="image" />
+                                                    i.weather[0].main == "Snow" && <img className="ico" src={haze} alt="image" />
                                                 }
                                                 {
-                                                    i.weather[0].main == "Haze" && <img className="ico" src="src/assets/images/haze.png" alt="image" />
+                                                    i.weather[0].main == "Haze" && <img className="ico" src={haze}alt="image" />
                                                 }
                                                 <span>{Math.ceil(i.main.temp)}°</span>
                                             </td>
@@ -183,19 +184,19 @@ const Weather = () => {
 
                                             return <td className="data-weather" key={i.dt}>
                                                 {
-                                                    i.weather[0].main == "Clouds" && <img className="ico" src="src/assets/images/cloud.png" alt="image" />
+                                                    i.weather[0].main == "Clouds" && <img className="ico" src={haze} alt="image" />
                                                 }
                                                 {
-                                                    i.weather[0].main == "Rain" && <img className="ico" src="src/assets/images/rain.png" alt="image" />
+                                                    i.weather[0].main == "Rain" && <img className="ico" src={haze} alt="image" />
                                                 }
                                                 {
-                                                    i.weather[0].main == "Clear" && <img className="ico" src="src/assets/images/sunny.png" alt="image" />
+                                                    i.weather[0].main == "Clear" && <img className="ico" src={haze} alt="image" />
                                                 }
                                                 {
-                                                    i.weather[0].main == "Snow" && <img className="ico" src="src/assets/images/snow.png" alt="image" />
+                                                    i.weather[0].main == "Snow" && <img className="ico" src={haze} alt="image" />
                                                 }
                                                 {
-                                                    i.weather[0].main == "Haze" && <img className="ico" src="src/assets/images/haze.png" alt="image" />
+                                                    i.weather[0].main == "Haze" && <img className="ico" src={haze} alt="image" />
                                                 }
                                                 <span>{Math.ceil(i.main.temp)}°</span>
                                             </td>

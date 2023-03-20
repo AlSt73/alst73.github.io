@@ -12,7 +12,7 @@ const Search = () => {
         //console.log(search + "-- " + inputCity);
         setInputCity(search);
         const container = document.querySelector('.magic');
-        container.classList.remove('magic');
+        //container.classList.remove('magic');
         container.classList.add('showMagic');
     }
 
